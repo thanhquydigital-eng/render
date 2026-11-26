@@ -1,23 +1,26 @@
+# main.py  (root của repo)
 import os
 import sys
-import json
+
+# Cho phép import services.platforms.model
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from fastapi import FastAPI
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 from typing import Any, Optional
 
-from fastapi import FastAPI, Request, JSONResponse
-from pydantic import BaseModel, Field
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import model as gmodel
+from services.platforms import model as gmodel
 
 app = FastAPI(title="Golike Bridge", version="1.0.0")
 
 
 class GolikeRequestBody(BaseModel):
     token: str
-    method: str            # GET / POST / PUT …
-    path: str            # raw API path, e.g. "/advertising/publishers/instagram/jobs"
+    method: str
+    path: str
     params: Optional[dict[str, Any]] = None
-    json_body: Optional[dict[str, Any]] = Field(default=None, alias="json")   # key "json" in the request
+    json_body: Optional[dict[str, Any]] = Field(default=None, alias="json")
 
 
 @app.get("/health")
