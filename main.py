@@ -1,8 +1,8 @@
-# main.py  (root của repo)
+# main.py (root repo)
 import os
 import sys
 
-# Cho phép import services.platforms.model
+# Cho phép import model.py cùng thư mục
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from fastapi import FastAPI
@@ -10,7 +10,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from typing import Any, Optional
 
-from services.platforms import model as gmodel
+import model as gmodel          # model.py nằm cùng thư mục root
 
 app = FastAPI(title="Golike Bridge", version="1.0.0")
 
