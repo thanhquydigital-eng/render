@@ -1,10 +1,6 @@
-# Q:/Automation/requirements.txt
-$content = @'
 fastapi
 uvicorn[standard]
 python-dotenv
 requests
 curl_cffi
 cryptography
-'@
-Set-Content -Path 'Q:/Automation/requirements.txt' -Value $content -Encoding UTF8
